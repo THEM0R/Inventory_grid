@@ -88,7 +88,7 @@ void UInventoryGridWidget::CreateLineSegments()
 		EndY.Add(Elements.Y);
 	}
 
-	// 43.36
+	// part 2
 
 }
 
