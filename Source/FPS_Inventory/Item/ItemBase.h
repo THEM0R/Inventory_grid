@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "ItemBase.generated.h"
 
+class USphereComponent;
+
 UCLASS()
 class FPS_INVENTORY_API AItemBase : public AActor
 {
@@ -14,13 +16,17 @@ class FPS_INVENTORY_API AItemBase : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AItemBase();
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* Mesh;
+
+	USphereComponent* Sphere;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 };

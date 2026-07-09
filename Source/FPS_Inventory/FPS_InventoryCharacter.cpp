@@ -14,6 +14,7 @@
 #include "InputActionValue.h"
 #include "Kismet/GameplayStatics.h"
 #include "Blueprint/UserWidget.h"
+#include "Item/ItemBase.h"
 
 //
 #include "Component/Inventory/InventoryComponent.h"
@@ -59,7 +60,9 @@ AFPS_InventoryCharacter::AFPS_InventoryCharacter()
 	
 	// mor
 	InventoryComponent = CreateDefaultSubobject<UInventoryComponent>(TEXT("InventoryComponent"));
-
+	// PickUp Item - OnBeginOverlap
+	GetCapsuleComponent()->OnComponentBeginOverlap
+		.AddDynamic(this, &AFPS_InventoryCharacter::OnBeginOverlap);
 
 }
 
@@ -190,5 +193,21 @@ void AFPS_InventoryCharacter::ToggleInventory()
 		GetPlayerController->SetShowMouseCursor(true);
 		GetPlayerController->SetInputMode(FInputModeGameAndUI());
 
+	}
+}
+
+void AFPS_InventoryCharacter::OnBeginOverlap(
+	UPrimitiveComponent* HitComp,
+	AActor* OtherActor,
+	UPrimitiveComponent* OtherComp,
+	int32 OtherBodyIndex,
+	bool bFromSweep,
+	const FHitResult& SweepResult) {
+
+	// ...
+	AItemBase* Item = Cast<AItemBase>(OtherActor);
+
+	if (Item) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("PickUp Item"));
 	}
 }

@@ -2,12 +2,24 @@
 
 
 #include "Item/ItemBase.h"
+#include "Components/SphereComponent.h"
 
 // Sets default values
 AItemBase::AItemBase()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+
+	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
+
+	// прикріпляєм меш до рута
+	Mesh->SetupAttachment(RootComponent);
+	Sphere->SetupAttachment(Mesh);
+
+	// відключаєм колізію
+	Mesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 }
 
