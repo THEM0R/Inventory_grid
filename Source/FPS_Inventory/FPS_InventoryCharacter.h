@@ -99,6 +99,11 @@ protected:
 	TSubclassOf<UUserWidget> InventoryWidgetClass;
 	UUserWidget* InventoryWidget;
 
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> ItemWidgetClass;
+	UUserWidget* ItemWidget;
+
+
 	APlayerController* GetPlayerController;
 
 	void ToggleInventory();
