@@ -124,6 +124,18 @@ int32 UInventoryGridWidget::NativePaint(
 
 	FLinearColor CustomColor(0.5f, 0.5f, 0.5f, 0.5f);
 
+
+	// fix GridBorder mor
+	if (!GridBorder)
+	{
+		return LayerID;
+	}
+
+	if (!LineStructData)
+	{
+		return LayerID;
+	}
+
 	FVector2D TopLeftCorner = GridBorder->GetCachedGeometry()
 		.GetLocalPositionAtCoordinates(FVector2D(0.0f, 0.0f));
 
@@ -136,6 +148,7 @@ int32 UInventoryGridWidget::NativePaint(
 		{
 			k = i;
 		}
+		// функція яка малює лінію
 		UWidgetBlueprintLibrary::DrawLine(
 			PaintContext,
 			FVector2D(StartX[i], StartY[k]) + TopLeftCorner,
