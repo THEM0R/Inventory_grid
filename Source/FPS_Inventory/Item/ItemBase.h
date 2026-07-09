@@ -25,6 +25,8 @@ public:
 	USphereComponent* Sphere;
 
 	FIntPoint GetDimensions() const;
+
+	UMaterialInterface* GetIcon();
 	
 
 protected:
@@ -34,5 +36,8 @@ protected:
 	// розмір предмету
 	UPROPERTY(EditAnywhere, Category = "Item Info")
 	FIntPoint Dimensions;
+
+	UPROPERTY(EditAnywhere, Category = "Item Info")
+	UMaterialInterface* Icon;
 
 };

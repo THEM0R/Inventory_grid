@@ -165,6 +165,10 @@ void AFPS_InventoryCharacter::BeginPlay()
 		if (InventoryWidgetClass) {
 			InventoryWidget = CreateWidget(GetWorld(), InventoryWidgetClass);
 			InventoryWidget->SetOwningPlayer(GetPlayerController);
+
+			// test
+			InventoryWidget->AddToViewport();
+			InventoryWidget->SetVisibility(ESlateVisibility::Collapsed);
 		}
 	}
 
@@ -175,28 +179,42 @@ void AFPS_InventoryCharacter::BeginPlay()
 
 void AFPS_InventoryCharacter::ToggleInventory()
 {
-	// mor
-	if (!InventoryWidget)
-	{
-		UE_LOG(LogTemp, Error, TEXT("InventoryWidget is nullptr"));
-		return;
-	}
+	//// mor
+	//if (!InventoryWidget)
+	//{
+	//	UE_LOG(LogTemp, Error, TEXT("InventoryWidget is nullptr"));
+	//	return;
+	//}
 
 
-	if (InventoryWidget->IsInViewport()) {
+	//if (InventoryWidget->IsInViewport()) {
 
-		InventoryWidget->RemoveFromParent();
-		GetPlayerController->SetShowMouseCursor(false);
-		GetPlayerController->SetInputMode(FInputModeGameOnly());
+	//	InventoryWidget->RemoveFromParent();
+	//	GetPlayerController->SetShowMouseCursor(false);
+	//	GetPlayerController->SetInputMode(FInputModeGameOnly());
 
+	//}
+	//else {
+
+	//	InventoryWidget->AddToViewport();
+	//	GetPlayerController->SetShowMouseCursor(true);
+	//	GetPlayerController->SetInputMode(FInputModeGameAndUI());
+
+	//}
+
+
+	if (InventoryWidget->GetVisibility() == ESlateVisibility::Collapsed) {
+
+		InventoryWidget->SetVisibility(ESlateVisibility::Visible);
+		GetPlayerController->SetInputMode(FInputModeGameAndUI());
+		GetPlayerController->SetShowMouseCursor(true);
 	}
 	else {
-
-		InventoryWidget->AddToViewport();
-		GetPlayerController->SetShowMouseCursor(true);
-		GetPlayerController->SetInputMode(FInputModeGameAndUI());
-
+		InventoryWidget->SetVisibility(ESlateVisibility::Collapsed);
+		GetPlayerController->SetInputMode(FInputModeGameOnly());
+		GetPlayerController->SetShowMouseCursor(false);
 	}
+
 }
 
 void AFPS_InventoryCharacter::OnBeginOverlap(

@@ -44,3 +44,8 @@ FIntPoint AItemBase::GetDimensions() const
 	return Dimensions;
 }
 
+UMaterialInterface* AItemBase::GetIcon()
+{
+	return Icon;
+}
+
