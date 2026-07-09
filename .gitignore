@@ -1,0 +1,34 @@
+# Visual Studio
+.vs/
+.vscode/
+
+# Unreal Engine
+Binaries/
+Build/*
+!Build/**/*.ico
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# Generated project files
+*.VC.db
+*.VC.opendb
+*.suo
+*.user
+*.userprefs
+
+# Logs
+*.log
+
+# Crash dumps
+*.dmp
+
+# OS files
+Thumbs.db
+Desktop.ini
+
+# JetBrains Rider
+.idea/
+
+# Ignore temporary files
+*.tmp
