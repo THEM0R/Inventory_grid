@@ -2,6 +2,8 @@
 
 
 #include "Component/Inventory/InventoryComponent.h"
+#include "Item/ItemBase.h"
+
 
 // Sets default values for this component's properties
 UInventoryComponent::UInventoryComponent()
@@ -12,7 +14,6 @@ UInventoryComponent::UInventoryComponent()
 
 	// ...
 }
-
 
 // Called when the game starts
 void UInventoryComponent::BeginPlay()
@@ -30,5 +31,54 @@ void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+}
+
+bool UInventoryComponent::TryAddItem(AItemBase* ItemToAdd)
+{
+	if (ItemToAdd) {
+		for (int32 i = 0; i < Items.Num(); i++) {
+
+		}
+	}
+
+}
+
+bool UInventoryComponent::isRoomAvailable(AItemBase* ItemToAdd, int32 TopLeftIndex)
+{
+	FIntPoint Dimensions = ItemToAdd->GetDimensions();
+	FIntPoint Tile = IndexToTile(TopLeftIndex);
+
+	// по горизонталі
+	for (int32 i = Tile.X; i <= Tile.X + Dimensions.X - 1; i++) {
+		// по вертикалі
+		for (int32 j = Tile.Y; j <= Tile.Y + Dimensions.Y - 1; j++) {
+			if (IsTileValid(FIntPoint(i, j))) {
+				int32 Index = TileToIndex(FIntPoint(i, j));
+
+
+			}
+		}
+	}
+	return true;
+}
+
+FIntPoint UInventoryComponent::IndexToTile(int32 Index)
+{
+	return FIntPoint(Index % Columns, Index / Columns);
+}
+
+bool UInventoryComponent::IsTileValid(FIntPoint Tile)
+{
+	if (Tile.X >= 0 && Tile.Y >= 0 && Tile.X < Columns && Tile.Y < Rows) {
+		return true;
+	}
+	return false;
+}
+
+int32 UInventoryComponent::TileToIndex(FIntPoint Tile)
+{
+	int32 Index = Tile.X + Tile.Y * Columns;
+
+	return Index;
 }
 

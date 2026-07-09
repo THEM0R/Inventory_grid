@@ -24,9 +24,15 @@ public:
 
 	USphereComponent* Sphere;
 
+	FIntPoint GetDimensions() const;
+	
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	// розмір предмету
+	UPROPERTY(EditAnywhere, Category = "Item Info")
+	FIntPoint Dimensions;
 
 };

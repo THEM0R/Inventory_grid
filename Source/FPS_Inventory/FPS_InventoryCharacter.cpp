@@ -208,6 +208,11 @@ void AFPS_InventoryCharacter::OnBeginOverlap(
 	AItemBase* Item = Cast<AItemBase>(OtherActor);
 
 	if (Item) {
+		
 		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("PickUp Item"));
+		
+		if (InventoryComponent->TryAddItem(Item)) {
+			OtherActor->Destroy();
+		}
 	}
 }

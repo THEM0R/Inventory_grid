@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "InventoryComponent.generated.h"
 
+class AItemBase;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class FPS_INVENTORY_API UInventoryComponent : public UActorComponent
@@ -28,6 +29,18 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Inventory")
 	float TileSize;
+
+	TArray<AItemBase*> Items;
+
+	bool TryAddItem(AItemBase* ItemToAdd);
+
+	bool isRoomAvailable(AItemBase* ItemToAdd, int32 TopLeftIndex);
+
+	FIntPoint IndexToTile(int32 Index);
+
+	bool IsTileValid(FIntPoint Tile);
+
+	int32 TileToIndex(FIntPoint Tile);
 
 protected:
 

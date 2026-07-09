@@ -23,6 +23,8 @@ AItemBase::AItemBase()
 
 }
 
+
+
 // Called when the game starts or when spawned
 void AItemBase::BeginPlay()
 {
@@ -35,5 +37,10 @@ void AItemBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+FIntPoint AItemBase::GetDimensions() const
+{
+	return Dimensions;
 }
 
