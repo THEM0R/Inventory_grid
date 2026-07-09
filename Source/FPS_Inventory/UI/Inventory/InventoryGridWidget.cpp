@@ -140,7 +140,9 @@ int32 UInventoryGridWidget::NativePaint(
 			PaintContext,
 			FVector2D(StartX[i], StartY[k]) + TopLeftCorner,
 			FVector2D(EndX[i], EndY[k]) + TopLeftCorner,
-			CustomColor
+			CustomColor,
+			false,
+			2.0f
 		);
 	}
 
