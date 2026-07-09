@@ -168,6 +168,9 @@ void AFPS_InventoryCharacter::BeginPlay()
 		}
 	}
 
+	InventoryComponent->Items.SetNum(
+			InventoryComponent->Columns * InventoryComponent->Rows
+		);
 }
 
 void AFPS_InventoryCharacter::ToggleInventory()

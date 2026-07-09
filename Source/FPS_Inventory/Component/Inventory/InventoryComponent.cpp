@@ -38,8 +38,15 @@ bool UInventoryComponent::TryAddItem(AItemBase* ItemToAdd)
 	if (ItemToAdd) {
 		for (int32 i = 0; i < Items.Num(); i++) {
 
+			if (isRoomAvailable(ItemToAdd, i)) {
+
+				AddItemAt(ItemToAdd, i);
+				return true;
+			}
 		}
+		return false;
 	}
+	return false;
 
 }
 
@@ -54,8 +61,17 @@ bool UInventoryComponent::isRoomAvailable(AItemBase* ItemToAdd, int32 TopLeftInd
 		for (int32 j = Tile.Y; j <= Tile.Y + Dimensions.Y - 1; j++) {
 			if (IsTileValid(FIntPoint(i, j))) {
 				int32 Index = TileToIndex(FIntPoint(i, j));
-
-
+				if (GetResultAtIndex(Index)) {
+					if(GetItemAtIndex(Index)){
+						return false;
+					}
+				}
+				else {
+					return false;
+				}
+			}
+			else {
+				return false;
 			}
 		}
 	}
@@ -80,5 +96,36 @@ int32 UInventoryComponent::TileToIndex(FIntPoint Tile)
 	int32 Index = Tile.X + Tile.Y * Columns;
 
 	return Index;
+}
+
+float UInventoryComponent::GetResultAtIndex(int32 Index)
+{
+	if (Items.IsValidIndex(Index)) {
+		return true;
+	}
+	return false;
+}
+
+AItemBase* UInventoryComponent::GetItemAtIndex(int32 Index)
+{
+	if (Items.IsValidIndex(Index)) {
+		return Items[Index];
+	}
+	return nullptr;
+}
+
+void UInventoryComponent::AddItemAt(AItemBase* ItemToAdd, int32 TopLeftIndex)
+{
+	FIntPoint Dimensions = ItemToAdd->GetDimensions();
+	FIntPoint Tile = IndexToTile(TopLeftIndex);
+
+	// по горизонталі
+	for (int32 i = Tile.X; i <= Tile.X + Dimensions.X - 1; i++) {
+		// по вертикалі
+		for (int32 j = Tile.Y; j <= Tile.Y + Dimensions.Y - 1; j++) {
+
+			Items[TileToIndex(FIntPoint(i, j))] = ItemToAdd;
+		}
+	}
 }
 

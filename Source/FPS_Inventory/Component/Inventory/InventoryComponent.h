@@ -42,6 +42,13 @@ public:
 
 	int32 TileToIndex(FIntPoint Tile);
 
+	float GetResultAtIndex(int32 Index);
+
+	AItemBase* GetItemAtIndex(int32 Index);
+
+	void AddItemAt(AItemBase* ItemToAdd, int32 TopLeftIndex);
+
+
 protected:
 
 	// Called when the game starts
