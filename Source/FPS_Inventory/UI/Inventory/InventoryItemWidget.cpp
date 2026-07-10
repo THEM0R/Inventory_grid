@@ -70,10 +70,10 @@ void UInventoryItemWidget::NativeOnDragDetected(
 	const FPointerEvent& InMouseEvent, 
 	UDragDropOperation*& OutOperator
 ){
-
+	Super::NativeOnDragDetected(InGeometry, InMouseEvent, OutOperator);
 }
 
 FReply UInventoryItemWidget::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
 {
-	return FReply::Handled();
+	return FReply::Handled().DetectDrag(TakeWidget(), EKeys::LeftMouseButton);
 }
