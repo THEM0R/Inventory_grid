@@ -220,11 +220,11 @@ bool UInventoryGridWidget::NativeOnDrop(
 				InventoryComponent->TileToIndex(DraggedItemTopLeftIndex)
 			);
 		}
-
+		// עטלקאסמגמ
+		return true;
 
 	}
-	// עטלקאסמגמ
-	return true;
+	return false;
 }
 
 bool UInventoryGridWidget::NativeOnDragOver(
@@ -236,8 +236,17 @@ bool UInventoryGridWidget::NativeOnDragOver(
 		AItemBase* DraggedItem = Cast<AItemBase>(InOperation->Payload);
 
 		FVector2D ScreenPosition = InDragDropEvent.GetLastScreenSpacePosition();
+		FVector2D LocalPosition = InGeometry.AbsoluteToLocal(ScreenPosition);
 
+		GEngine->AddOnScreenDebugMessage(
+			-1, 5.0f,
+			FColor::Green, 
+			FString::Printf(TEXT("X: %.2f Y: %.2f"), LocalPosition.X, LocalPosition.Y)
+		);
+		// עטלקאסמגמ
+		return true;
 	}
+	return false;
 }
 
 bool UInventoryGridWidget::IsRoomAvailableForPayLoad(AItemBase* Item) const
@@ -250,6 +259,11 @@ bool UInventoryGridWidget::IsRoomAvailableForPayLoad(AItemBase* Item) const
 			);
 	}
 	return false;
+}
+
+FMousePositionInTile UInventoryGridWidget::FMousePositionInTileResult(FVector2D(MousePosition))
+{
+	return MousePositionInTile;
 }
 
 

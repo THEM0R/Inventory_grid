@@ -23,6 +23,20 @@ struct FLines {
 	TArray<FVector2D> YLines;
 };
 
+
+USTRUCT()
+struct FMousePositionInTile {
+
+	GENERATED_USTRUCT_BODY();
+
+	FMousePositionInTile() {
+
+	};
+
+	bool Right;
+	bool Down;
+};
+
 class FPS_INVENTORY_API InventoryDataStructs
 {
 public:

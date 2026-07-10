@@ -83,6 +83,10 @@ protected:
 
 	bool IsRoomAvailableForPayLoad(AItemBase* Item) const;
 
+	FMousePositionInTile MousePositionInTile;
+	// функц€ шоб визначити позиц≥ю мошки куди класти ≥тем
+	FMousePositionInTile FMousePositionInTileResult(FVector2D(MousePosition));
+
 	FIntPoint DraggedItemTopLeftIndex;
 
 public:
