@@ -50,10 +50,21 @@ bool UInventoryComponent::TryAddItem(AItemBase* ItemToAdd)
 				return true;
 			}
 		}
+		// ןמגמנמע ןנט ן³הימל³ ןנוהלועא
+		ItemToAdd->RotateItem();
+
+		for (int32 i = 0; i < Items.Num(); i++) {
+
+			if (isRoomAvailable(ItemToAdd, i)) {
+
+				AddItemAt(ItemToAdd, i);
+				return true;
+			}
+		}
+		ItemToAdd->RotateItem();
 		return false;
 	}
 	return false;
-
 }
 
 bool UInventoryComponent::isRoomAvailable(AItemBase* ItemToAdd, int32 TopLeftIndex)

@@ -46,7 +46,7 @@ protected:
 	UMaterialInterface* Icon;
 
 	UPROPERTY(EditAnywhere, Category = "Item Info")
-	UMaterialInterface* RotationIcon;
+	UMaterialInterface* RotatedIcon;
 
 	bool isRotated;
 

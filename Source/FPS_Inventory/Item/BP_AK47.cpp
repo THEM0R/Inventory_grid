@@ -8,10 +8,21 @@ ABP_AK47::ABP_AK47()
 	Dimensions = FIntPoint(5, 2);
 
 	static ConstructorHelpers::FObjectFinder<UMaterialInterface> 
-		ItemInfo(TEXT("/Game/_FPS/_Assets/_Materials/_UI/MI_AK47"));
+		ItemIcon(TEXT("/Game/_FPS/_Assets/_Materials/_UI/_Icons/MI_AK47"));
 
-	if (ItemInfo.Succeeded()) {
-		Icon = ItemInfo.Object;
+	if (ItemIcon.Succeeded()) {
+		Icon = ItemIcon.Object;
 	}
+
+	// /Game/_FPS/_Assets/_Materials/_UI/_Icons/_Rotated/MI_AK47_Rotated.MI_AK47_Rotated
+
+
+	static ConstructorHelpers::FObjectFinder<UMaterialInterface>
+		IconRotated(TEXT("/Game/_FPS/_Assets/_Materials/_UI/_Icons/_Rotated/MI_AK47_Rotated"));
+
+	if (IconRotated.Succeeded()) {
+		RotatedIcon = IconRotated.Object;
+	}
+
 
 }

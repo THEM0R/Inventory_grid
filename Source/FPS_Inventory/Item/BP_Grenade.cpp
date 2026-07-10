@@ -8,10 +8,13 @@ ABP_Grenade::ABP_Grenade()
 	Dimensions = FIntPoint(1, 1);
 
 	static ConstructorHelpers::FObjectFinder<UMaterialInterface>
-		ItemInfo(TEXT("/Game/_FPS/_Assets/_Materials/_UI/MI_Grenade"));
+		ItemIcon(TEXT("/Game/_FPS/_Assets/_Materials/_UI/_Icons/MI_Grenade"));
 
-	if (ItemInfo.Succeeded()) {
-		Icon = ItemInfo.Object;
+	// /Game/_FPS/_Assets/_Materials/_UI/_Icons/MI_Grenade.MI_Grenade
+
+	if (ItemIcon.Succeeded()) {
+		Icon = ItemIcon.Object;
+		RotatedIcon = Icon;
 	}
 }
 

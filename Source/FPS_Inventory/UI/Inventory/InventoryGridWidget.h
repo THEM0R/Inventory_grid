@@ -104,6 +104,8 @@ protected:
 
 	FIntPoint DraggedItemTopLeftIndex;
 
+	bool DrawDropLocation;
+
 public:
 
 	// функція оновлення віджета інвентаря

@@ -58,7 +58,7 @@ UMaterialInterface* AItemBase::GetIcon()
 
 UMaterialInterface* AItemBase::GetRotationIcon()
 {
-	return RotationIcon;
+	return RotatedIcon;
 }
 
 bool AItemBase::GetIsRotated()

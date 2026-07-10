@@ -8,9 +8,16 @@ ABP_Knife::ABP_Knife()
 	Dimensions = FIntPoint(1, 2);
 
 	static ConstructorHelpers::FObjectFinder<UMaterialInterface>
-		ItemInfo(TEXT("/Game/_FPS/_Assets/_Materials/_UI/MI_Knife"));
+		ItemIcon(TEXT("/Game/_FPS/_Assets/_Materials/_UI/_Icons/MI_Knife"));
 
-	if (ItemInfo.Succeeded()) {
-		Icon = ItemInfo.Object;
+	if (ItemIcon.Succeeded()) {
+		Icon = ItemIcon.Object;
+	}
+
+	static ConstructorHelpers::FObjectFinder<UMaterialInterface>
+		IconRotated(TEXT("/Game/_FPS/_Assets/_Materials/_UI/_Icons/_Rotated/MI_Knife_Rotated"));
+
+	if (IconRotated.Succeeded()) {
+		RotatedIcon = IconRotated.Object;
 	}
 }

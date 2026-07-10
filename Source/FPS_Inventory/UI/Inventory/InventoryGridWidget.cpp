@@ -260,6 +260,8 @@ bool UInventoryGridWidget::NativeOnDrop(
 		}
 
 		Dropped = true;
+		//
+		DrawDropLocation = true;
 		// עטלקאסמגמ
 		return true;
 
