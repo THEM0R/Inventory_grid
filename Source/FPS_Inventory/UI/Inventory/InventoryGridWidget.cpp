@@ -225,6 +225,36 @@ bool UInventoryGridWidget::NativeOnDrop(
 				InventoryComponent->TileToIndex(DraggedItemTopLeftIndex)
 			);
 		}
+		else {
+			if (InventoryComponent->TryAddItem(DroppedItem)) 
+			{
+				InventoryComponent->RefreshAllItems();
+			}
+			else {
+
+				// спавн ітема біля персонажа
+				FVector SpawnLocation = CharacterReference->
+					GetActorLocation() + CharacterReference->
+					GetActorForwardVector() * 200.0f;
+
+				FRotator SpawnRotation = CharacterReference->GetActorRotation();
+
+				FActorSpawnParameters SpawnParams;
+
+				SpawnParams.
+					SpawnCollisionHandlingOverride =
+					ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+
+				AItemBase* SpawnedItem = GetWorld()->SpawnActor<AItemBase>(
+					InOperation->Payload->GetClass(),
+					SpawnLocation * FVector(1, 1, 0), // шоб спавнило на землю
+					SpawnRotation,
+					SpawnParams
+				);
+
+			}
+		}
+
 		Dropped = true;
 		// тимчасово
 		return true;

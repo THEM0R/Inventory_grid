@@ -34,8 +34,7 @@ void UInventoryItemWidget::NativeConstruct()
 			InventoryGridWidgetReference->
 			DroppedItem);
 	}
-
-	if (CharacterReference) {
+	else if (CharacterReference) {
 		Refresh(CharacterReference->ItemToAdd);
 	}
 
