@@ -64,3 +64,16 @@ void UInventoryItemWidget::NativeOnMouseLeave(const FPointerEvent& InMouseEvent)
 
 	BackgroundBorder->SetBrushColor(FLinearColor(0.0f, 0.0f, 0.0f, 0.5f));
 }
+
+void UInventoryItemWidget::NativeOnDragDetected(
+	const FGeometry& InGeometry, 
+	const FPointerEvent& InMouseEvent, 
+	UDragDropOperation*& OutOperator
+){
+
+}
+
+FReply UInventoryItemWidget::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
+{
+	return FReply::Handled();
+}
