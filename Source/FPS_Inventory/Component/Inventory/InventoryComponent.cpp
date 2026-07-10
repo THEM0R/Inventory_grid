@@ -163,7 +163,7 @@ void UInventoryComponent::RemoveItem(AItemBase* ItemToRemove)
 		for (int32 i = 0; i < Items.Num(); i++)
 		{
 			if (Items[i] == ItemToRemove) {
-				Items[i] == nullptr;
+				Items[i] = nullptr;
 			}
 		}
 	}
