@@ -238,6 +238,10 @@ bool UInventoryGridWidget::NativeOnDragOver(
 		FVector2D ScreenPosition = InDragDropEvent.GetLastScreenSpacePosition();
 		FVector2D LocalPosition = InGeometry.AbsoluteToLocal(ScreenPosition);
 
+		// Стартові кординати сітки
+		FVector2D GridStarterCordinates = GridBorder->
+			GetCachedGeometry().GetLocalPositionAtCoordinates(FVector2D(0.0f, 0.0f));
+
 		GEngine->AddOnScreenDebugMessage(
 			-1, 5.0f,
 			FColor::Green, 
