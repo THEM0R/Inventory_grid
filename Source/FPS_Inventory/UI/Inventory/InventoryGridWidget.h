@@ -113,6 +113,8 @@ protected:
 		int32 LayedId
 	) const;
 
+	UObject* DraggedPayLoad;
+
 	UDragDropOperation* StorredDragDropOperation;
 
 	AItemBase* DraggedItem;

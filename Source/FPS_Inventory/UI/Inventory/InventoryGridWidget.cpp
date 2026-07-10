@@ -167,6 +167,31 @@ int32 UInventoryGridWidget::NativePaint(
 		);
 	}
 
+	if (DrawDropLocation) {
+		AItemBase* Item = Cast<AItemBase>(DraggedPayLoad);
+
+		if (IsRoomAvailableForPayLoad(Item))
+		{
+			DrawBackgroundBox(
+				Item,
+				FLinearColor( 0.0,1.0,0.0,0.25 ),
+				AllottedGeometry,
+				TopLeftCorner,
+				OutDrawElements,
+				LayerID
+				);
+		}
+		else {
+			DrawBackgroundBox(
+				Item,
+				FLinearColor(1.0, 0.0, 0.0, 0.25),
+				AllottedGeometry,
+				TopLeftCorner,
+				OutDrawElements,
+				LayerID
+			);
+		}
+	}
 
 	return int32();
 }
@@ -403,6 +428,8 @@ void UInventoryGridWidget::NativeOnDragEnter(
 {
 	Super::NativeOnDragEnter(InGeometry, InDragDropEvent, InOperation);
 
+	DraggedPayLoad = InOperation->Payload;
+
 	DrawDropLocation = true;
 
 	UDragDropOperation* DropOperation = Cast<UDragDropOperation>(InOperation);
@@ -417,12 +444,45 @@ void UInventoryGridWidget::NativeOnDragLeave(const FDragDropEvent& InMouseEvent,
 {
 	Super::NativeOnDragLeave(InMouseEvent, InOperation);
 
+	DraggedPayLoad = nullptr;
+
 	DrawDropLocation = false;
 
 }
 
-void UInventoryGridWidget::DrawBackgroundBox(AItemBase* Item, FLinearColor MyTintColor, const FGeometry& AllottedGeometry, FVector2D TopLeftCorner, FSlateWindowElementList& OutDrawElements, int32 LayedId) const
+void UInventoryGridWidget::DrawBackgroundBox(
+	AItemBase* Item,
+	FLinearColor MyTintColor,
+	const FGeometry& AllottedGeometry,
+	FVector2D TopLeftCorner,
+	FSlateWindowElementList& OutDrawElements,
+	int32 LayedId) const
 {
+	FSlateBrush BoxBrush;
+	BoxBrush.DrawAs = ESlateBrushDrawType::Box;
+
+	FVector2D BoxSize(
+		Item->GetDimensions().X * InventoryComponent->TileSize,
+		Item->GetDimensions().Y * InventoryComponent->TileSize
+	);
+
+	FIntPoint BoxPosition(
+		//DraggedItemTopLeftTile.X * InventoryComponent->TileSize,
+		DraggedItemTopLeftIndex.X * InventoryComponent->TileSize,
+		DraggedItemTopLeftIndex.Y * InventoryComponent->TileSize
+	);
+
+	FPaintGeometry PaintGeometry = AllottedGeometry
+		.ToPaintGeometry(BoxSize, FSlateLayoutTransform(TopLeftCorner + BoxPosition));
+
+	FSlateDrawElement::MakeBox(
+		OutDrawElements,
+		LayedId,
+		PaintGeometry,
+		&BoxBrush,
+		ESlateDrawEffect::None, 
+		MyTintColor
+	);
 
 }
 
