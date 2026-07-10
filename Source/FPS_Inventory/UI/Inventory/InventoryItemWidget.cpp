@@ -44,7 +44,14 @@ void UInventoryItemWidget::Refresh(AActor* ItemToAdd)
 {
 	Item = Cast<AItemBase>(ItemToAdd);
 
-	ItemImage->SetBrushFromMaterial(Item->GetIcon());
+	if (Item->GetIsRotated()) {
+		ItemImage->SetBrushFromMaterial(Item->GetRotationIcon());
+	}
+	else {
+		ItemImage->SetBrushFromMaterial(Item->GetIcon());
+	}
+
+	
 
 	Size = FVector2D(
 		Item->GetDimensions().X * CharacterReference->InventoryComponent->TileSize,

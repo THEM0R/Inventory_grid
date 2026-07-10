@@ -381,6 +381,12 @@ FReply UInventoryGridWidget::NativeOnPreviewKeyDown(const FGeometry& InGeometry,
 					VisualDraggedItem = Cast<UInventoryItemWidget>(
 						StorredDragDropOperation->DefaultDragVisual
 					);
+
+				if (VisualDraggedItem) {
+					VisualDraggedItem->Refresh(DraggedItem);
+				}
+				return FReply::Handled();
+
 			}
 		}
 	}

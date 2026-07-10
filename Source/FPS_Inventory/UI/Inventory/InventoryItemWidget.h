@@ -22,6 +22,9 @@ class FPS_INVENTORY_API UInventoryItemWidget : public UUserWidget
 	GENERATED_BODY()
 	
 
+public:
+	void Refresh(AActor* ItemToAdd);
+
 protected:
 
 	UPROPERTY(VisibleAnywhere, meta = (BindWidget), Category = "UI")
@@ -44,7 +47,7 @@ protected:
 
 	virtual void NativeConstruct() override;
 
-	void Refresh(AActor* ItemToAdd);
+	
 
 	virtual void NativeOnMouseEnter(
 		const FGeometry& InGeometry,
