@@ -42,4 +42,11 @@ protected:
 	virtual void NativeConstruct() override;
 
 	void Refresh(AActor* ItemToAdd);
+
+	virtual void NativeOnMouseEnter(
+		const FGeometry& InGeometry,
+		const FPointerEvent& InMouseEvent
+	);
+
+	virtual void NativeOnMouseLeave(const FPointerEvent& InMouseEvent) override;
 };

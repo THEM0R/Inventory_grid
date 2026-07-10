@@ -37,6 +37,8 @@ protected:
 	// ця функція стартує разом з створення віджета
 	virtual void NativeConstruct() override;
 
+
+	// Блокує мишку
 	virtual FReply NativeOnMouseButtonDown(
 		const FGeometry& InGeometry, 
 		const FPointerEvent& InMouseEvent

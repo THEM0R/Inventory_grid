@@ -7,6 +7,7 @@
 #include "Item/ItemBase.h"
 #include "Components/Image.h"
 #include "Components/SizeBox.h"
+#include "Components/Border.h"
 #include "Components/CanvasPanelSlot.h"
 #include "Component/Inventory/InventoryComponent.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
@@ -45,4 +46,21 @@ void UInventoryItemWidget::Refresh(AActor* ItemToAdd)
 	UCanvasPanelSlot* ImageAsCanvasSlot = UWidgetLayoutLibrary::SlotAsCanvasSlot(ItemImage);
 
 	ImageAsCanvasSlot->SetSize(Size);
+}
+
+
+void UInventoryItemWidget::NativeOnMouseEnter(
+	const FGeometry& InGeometry,
+	const FPointerEvent& InMouseEvent
+) {
+	Super::NativeOnMouseEnter(InGeometry, InMouseEvent);
+
+	BackgroundBorder->SetBrushColor(FLinearColor(0.0f, 0.0f, 0.0f, 0.2f));
+}
+
+void UInventoryItemWidget::NativeOnMouseLeave(const FPointerEvent& InMouseEvent)
+{
+	Super::NativeOnMouseLeave(InMouseEvent);
+
+	BackgroundBorder->SetBrushColor(FLinearColor(0.0f, 0.0f, 0.0f, 0.5f));
 }
