@@ -14,3 +14,5 @@ ABP_Grenade::ABP_Grenade()
 		Icon = ItemInfo.Object;
 	}
 }
+
+// part 6 final
