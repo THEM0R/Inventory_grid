@@ -7,6 +7,7 @@
 #include "Blueprint/WidgetLayoutLibrary.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Item/ItemBase.h"
+#include "Ui/Inventory/InventoryItemWidget.h"
 
 
 
@@ -374,6 +375,13 @@ FReply UInventoryGridWidget::NativeOnPreviewKeyDown(const FGeometry& InGeometry,
 
 		if (DraggedItem) {
 			DraggedItem->RotateItem();
+
+			if (StorredDragDropOperation) {
+				UInventoryItemWidget* 
+					VisualDraggedItem = Cast<UInventoryItemWidget>(
+						StorredDragDropOperation->DefaultDragVisual
+					);
+			}
 		}
 	}
 
@@ -390,7 +398,7 @@ void UInventoryGridWidget::NativeOnDragEnter(
 	UDragDropOperation* DropOperation = Cast<UDragDropOperation>(InOperation);
 
 	if (DropOperation) {
-
+		StorredDragDropOperation = DropOperation;
 	}
 
 }
