@@ -73,6 +73,13 @@ protected:
 		// const UDragDropOperation* InOperation, 5.8 - UDragDropOperation* InOperation,
 		UDragDropOperation* InOperation
 	) override;
+	// будем діставати верхню ліву плитку
+	bool NativeOnDragOver(
+		const FGeometry& InGeometry,
+		const FDragDropEvent& InDragDropEvent,
+		// const UDragDropOperation* InOperation, 5.8 - UDragDropOperation* InOperation,
+		UDragDropOperation* InOperation
+	) override;
 
 	bool IsRoomAvailableForPayLoad(AItemBase* Item) const;
 

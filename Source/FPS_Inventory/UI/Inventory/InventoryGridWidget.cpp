@@ -223,8 +223,21 @@ bool UInventoryGridWidget::NativeOnDrop(
 
 
 	}
-
+	// עטלקאסמגמ
 	return true;
+}
+
+bool UInventoryGridWidget::NativeOnDragOver(
+	const FGeometry& InGeometry,
+	const FDragDropEvent& InDragDropEvent,
+	UDragDropOperation* InOperation)
+{
+	if (InOperation->Payload) {
+		AItemBase* DraggedItem = Cast<AItemBase>(InOperation->Payload);
+
+		FVector2D ScreenPosition = InDragDropEvent.GetLastScreenSpacePosition();
+
+	}
 }
 
 bool UInventoryGridWidget::IsRoomAvailableForPayLoad(AItemBase* Item) const
@@ -238,3 +251,6 @@ bool UInventoryGridWidget::IsRoomAvailableForPayLoad(AItemBase* Item) const
 	}
 	return false;
 }
+
+
+
