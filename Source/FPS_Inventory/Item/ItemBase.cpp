@@ -3,6 +3,7 @@
 
 #include "Item/ItemBase.h"
 #include "Components/SphereComponent.h"
+#include "ItemBase.h"
 
 // Sets default values
 AItemBase::AItemBase()
@@ -47,5 +48,25 @@ FIntPoint AItemBase::GetDimensions() const
 UMaterialInterface* AItemBase::GetIcon()
 {
 	return Icon;
+}
+
+UMaterialInterface* AItemBase::GetRotationIcon()
+{
+	return RotationIcon;
+}
+
+bool AItemBase::GetIsRotated()
+{
+	return isRotated;
+}
+
+void AItemBase::RotateItem()
+{
+	if (isRotated) {
+		isRotated = false;
+	}
+	else {
+		isRotated = true;
+	}
 }
 

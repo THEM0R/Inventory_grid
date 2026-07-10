@@ -27,7 +27,12 @@ public:
 	FIntPoint GetDimensions() const;
 
 	UMaterialInterface* GetIcon();
+
+	UMaterialInterface* GetRotationIcon();
+
+	bool GetIsRotated();
 	
+	void RotateItem();
 
 protected:
 	// Called when the game starts or when spawned
@@ -39,5 +44,10 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Item Info")
 	UMaterialInterface* Icon;
+
+	UPROPERTY(EditAnywhere, Category = "Item Info")
+	UMaterialInterface* RotationIcon;
+
+	bool isRotated;
 
 };

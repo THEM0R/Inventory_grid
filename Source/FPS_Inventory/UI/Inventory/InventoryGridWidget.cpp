@@ -226,12 +226,11 @@ bool UInventoryGridWidget::NativeOnDrop(
 			);
 		}
 		else {
-			if (InventoryComponent->TryAddItem(DroppedItem)) 
-			{
-				InventoryComponent->RefreshAllItems();
-			}
-			else {
 
+			InventoryComponent->RefreshAllItems();
+
+			if (!InventoryComponent->TryAddItem(DroppedItem)) 
+			{
 				// спавн ітема біля персонажа
 				FVector SpawnLocation = CharacterReference->
 					GetActorLocation() + CharacterReference->
@@ -251,8 +250,8 @@ bool UInventoryGridWidget::NativeOnDrop(
 					SpawnRotation,
 					SpawnParams
 				);
-
 			}
+		
 		}
 
 		Dropped = true;
