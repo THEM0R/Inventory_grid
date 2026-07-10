@@ -243,6 +243,43 @@ bool UInventoryGridWidget::NativeOnDragOver(
 			FColor::Green, 
 			FString::Printf(TEXT("X: %.2f Y: %.2f"), LocalPosition.X, LocalPosition.Y)
 		);
+
+		FIntPoint ResultTile;
+
+		bool Down_ = FMousePositionInTileResult(LocalPosition).Down;
+		bool Right_ = FMousePositionInTileResult(LocalPosition).Right;
+
+		if (Right_) {
+			ResultTile.X = FMath::Clamp(
+				DraggedItem->GetDimensions().X - 1,
+				0,
+				DraggedItem->GetDimensions().X - 1
+			);
+		}
+		else {
+			ResultTile.X = FMath::Clamp(
+				DraggedItem->GetDimensions().X,
+				0,
+				DraggedItem->GetDimensions().X
+			);
+		}
+
+		if (Down_) {
+			ResultTile.Y = FMath::Clamp(
+				DraggedItem->GetDimensions().Y - 1,
+				0,
+				DraggedItem->GetDimensions().Y - 1
+			);
+		}
+		else {
+			ResultTile.Y = FMath::Clamp(
+				DraggedItem->GetDimensions().Y,
+				0,
+				DraggedItem->GetDimensions().Y
+			);
+		}
+
+
 		// тимчасово
 		return true;
 	}
@@ -263,6 +300,16 @@ bool UInventoryGridWidget::IsRoomAvailableForPayLoad(AItemBase* Item) const
 
 FMousePositionInTile UInventoryGridWidget::FMousePositionInTileResult(FVector2D(MousePosition))
 {
+	// Горизонт
+	MousePositionInTile
+		.Right = fmod(MousePosition.X, InventoryComponent->TileSize)
+		> (InventoryComponent->TileSize / 2);
+
+	// Вертикаль
+	MousePositionInTile
+		.Down = fmod(MousePosition.Y, InventoryComponent->TileSize)
+		> (InventoryComponent->TileSize / 2);
+
 	return MousePositionInTile;
 }
 
