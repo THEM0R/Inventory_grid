@@ -22,6 +22,9 @@ void UInventoryGridWidget::NativeConstruct()
 
 	if (!CharacterReference) return;
 
+
+	bIsFocusable = true;
+
 	Columns = InventoryComponent->Columns;
 	Rows = InventoryComponent->Rows;
 	TileSize = InventoryComponent->TileSize;
@@ -269,7 +272,8 @@ bool UInventoryGridWidget::NativeOnDragOver(
 	UDragDropOperation* InOperation)
 {
 	if (InOperation->Payload) {
-		AItemBase* DraggedItem = Cast<AItemBase>(InOperation->Payload);
+
+		DraggedItem = Cast<AItemBase>(InOperation->Payload);
 
 		FVector2D ScreenPosition = InDragDropEvent.GetLastScreenSpacePosition();
 		FVector2D LocalPosition = InGeometry.AbsoluteToLocal(ScreenPosition);
@@ -280,11 +284,11 @@ bool UInventoryGridWidget::NativeOnDragOver(
 
 		FVector2D AdjustedPosition = LocalPosition - GridStarterCordinates;
 
-		GEngine->AddOnScreenDebugMessage(
+		/*GEngine->AddOnScreenDebugMessage(
 			-1, 5.0f,
 			FColor::Green, 
 			FString::Printf(TEXT("X: %.2f Y: %.2f"), AdjustedPosition.X, AdjustedPosition.Y)
-		);
+		);*/
 
 		FIntPoint ResultTile;
 
@@ -364,11 +368,31 @@ FReply UInventoryGridWidget::NativeOnPreviewKeyDown(const FGeometry& InGeometry,
 {
 
 	if (InKeyEvent.GetKey() == EKeys::R) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("R clicked"));
+
+		//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("R clicked"));
+		//return FReply::Handled();
+
+		if (DraggedItem) {
+			DraggedItem->RotateItem();
+		}
 	}
 
-
 	return Super::NativeOnPreviewKeyDown(InGeometry, InKeyEvent);
+}
+
+void UInventoryGridWidget::NativeOnDragEnter(
+	const FGeometry& InGeometry,
+	const FDragDropEvent& InDragDropEvent,
+	UDragDropOperation* InOperation)
+{
+	Super::NativeOnDragEnter(InGeometry, InDragDropEvent, InOperation);
+
+	UDragDropOperation* DropOperation = Cast<UDragDropOperation>(InOperation);
+
+	if (DropOperation) {
+
+	}
+
 }
 
 

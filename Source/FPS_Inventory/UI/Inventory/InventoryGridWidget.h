@@ -92,6 +92,16 @@ protected:
 		const FKeyEvent& InKeyEvent
 	) override;
 
+	void NativeOnDragEnter(
+		const FGeometry& InGeometry,
+		const FDragDropEvent& InDragDropEvent,
+		UDragDropOperation* InOperation
+	) override;
+
+	UDragDropOperation* StorredDragDropOperation;
+
+	AItemBase* DraggedItem;
+
 	FIntPoint DraggedItemTopLeftIndex;
 
 public:
