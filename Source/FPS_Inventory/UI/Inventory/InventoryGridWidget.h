@@ -66,7 +66,12 @@ protected:
 		const FWidgetStyle& InWidgetStyle,
 		bool bParentEnabled) const override;
 
-
+	virtual bool NativeOnDrop(
+		const FGeometry& InGeometry,
+		const FDragDropEvent& InDragDropEvent,
+		// const UDragDropOperation* InOperation, 5.8 - UDragDropOperation* InOperation,
+		UDragDropOperation* InOperation
+	) override;
 
 public:
 

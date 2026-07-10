@@ -163,6 +163,8 @@ int32 UInventoryGridWidget::NativePaint(
 	return int32();
 }
 
+
+
 void UInventoryGridWidget::Refresh() {
 
 	TArray<AItemBase*> Keys;
@@ -195,4 +197,17 @@ void UInventoryGridWidget::Refresh() {
 		}
 	}
 
+}
+
+
+bool UInventoryGridWidget::NativeOnDrop(
+	const FGeometry& InGeometry, 
+	const FDragDropEvent& InDragDropEvent, 
+	UDragDropOperation* InOperation)
+{
+	// InOperation->Payload - це ≥ наш предмет €кий ми перет€гуЇмо
+
+	if(InOperation->Payload) {
+		AItemBase* DroppedItem = Cast<AItemBase>(InOperation->Payload);
+	}
 }
