@@ -127,5 +127,22 @@ void UInventoryComponent::AddItemAt(AItemBase* ItemToAdd, int32 TopLeftIndex)
 			Items[TileToIndex(FIntPoint(i, j))] = ItemToAdd;
 		}
 	}
+
+	AddedItem = true;
+}
+// 35.59
+
+TMap<AItemBase*, FIntPoint> UInventoryComponent::GetAllItems() 
+{
+	for (int32 i = 0; i < Items.Num(); i++) 
+	{
+		if (Items[i]) {
+
+			if (!AllItems.Contains(Items[i])) {
+				AllItems.Add(Items[i],IndexToTile(i));
+			}
+		}
+	}
+	return AllItems;
 }
 

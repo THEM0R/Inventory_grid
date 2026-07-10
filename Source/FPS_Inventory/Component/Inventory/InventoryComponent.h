@@ -30,6 +30,8 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Inventory")
 	float TileSize;
 
+	bool AddedItem = false;
+
 	TArray<AItemBase*> Items;
 
 	bool TryAddItem(AItemBase* ItemToAdd);
@@ -48,8 +50,12 @@ public:
 
 	void AddItemAt(AItemBase* ItemToAdd, int32 TopLeftIndex);
 
+	TMap<AItemBase*, FIntPoint> GetAllItems();
 
 protected:
+
+	// всі ітеми 2 числа одне масив друге ячейка
+	TMap<AItemBase*, FIntPoint> AllItems;
 
 	// Called when the game starts
 	virtual void BeginPlay() override;
