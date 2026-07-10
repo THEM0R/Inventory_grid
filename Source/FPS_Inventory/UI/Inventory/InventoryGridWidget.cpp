@@ -403,6 +403,8 @@ void UInventoryGridWidget::NativeOnDragEnter(
 {
 	Super::NativeOnDragEnter(InGeometry, InDragDropEvent, InOperation);
 
+	DrawDropLocation = true;
+
 	UDragDropOperation* DropOperation = Cast<UDragDropOperation>(InOperation);
 
 	if (DropOperation) {
@@ -410,6 +412,21 @@ void UInventoryGridWidget::NativeOnDragEnter(
 	}
 
 }
+
+void UInventoryGridWidget::NativeOnDragLeave(const FDragDropEvent& InMouseEvent, UDragDropOperation* InOperation)
+{
+	Super::NativeOnDragLeave(InMouseEvent, InOperation);
+
+	DrawDropLocation = false;
+
+}
+
+void UInventoryGridWidget::DrawBackgroundBox(AItemBase* Item, FLinearColor MyTintColor, const FGeometry& AllottedGeometry, FVector2D TopLeftCorner, FSlateWindowElementList& OutDrawElements, int32 LayedId) const
+{
+
+}
+
+
 
 
 

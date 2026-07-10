@@ -98,6 +98,21 @@ protected:
 		UDragDropOperation* InOperation
 	) override;
 
+	void NativeOnDragLeave(
+		const FDragDropEvent& InMouseEvent,
+		UDragDropOperation* InOperation
+	) override;
+
+	// Функція для малювання зеленого фону куди підійде ітем
+	void DrawBackgroundBox(
+		AItemBase* Item,
+		FLinearColor MyTintColor,
+		const FGeometry& AllottedGeometry,
+		FVector2D TopLeftCorner,
+		FSlateWindowElementList& OutDrawElements,
+		int32 LayedId
+	) const;
+
 	UDragDropOperation* StorredDragDropOperation;
 
 	AItemBase* DraggedItem;
