@@ -15,6 +15,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Blueprint/UserWidget.h"
 #include "Item/ItemBase.h"
+#include "Ui/Inventory/InventoryGridWidget.h"
 
 //
 #include "Component/Inventory/InventoryComponent.h"
@@ -228,6 +229,8 @@ void AFPS_InventoryCharacter::OnBeginOverlap(
 	// ...
 
 	ItemToAdd = OtherActor;
+
+	InventoryComponent->InventoryGridWidgetReference->Dropped = false;
 
 	AItemBase* Item = Cast<AItemBase>(OtherActor);
 

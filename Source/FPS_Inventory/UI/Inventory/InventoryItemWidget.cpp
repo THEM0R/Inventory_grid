@@ -13,6 +13,7 @@
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Blueprint/WidgetLayoutLibrary.h"
 #include "Blueprint/DragDropOperation.h"
+#include "Ui/Inventory/InventoryGridWidget.h"
 
 
 
@@ -22,6 +23,17 @@ void UInventoryItemWidget::NativeConstruct()
 
 	CharacterReference = Cast<AFPS_InventoryCharacter>
 		(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
+
+	if (CharacterReference->
+		InventoryComponent->
+		InventoryGridWidgetReference->
+		Dropped) 
+	{
+		Refresh(CharacterReference->
+			InventoryComponent->
+			InventoryGridWidgetReference->
+			DroppedItem);
+	}
 
 	if (CharacterReference) {
 		Refresh(CharacterReference->ItemToAdd);

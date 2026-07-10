@@ -212,14 +212,20 @@ bool UInventoryGridWidget::NativeOnDrop(
 	// InOperation->Payload - це ≥ наш предмет €кий ми перет€гуЇмо
 
 	if(InOperation->Payload) {
-		AItemBase* DroppedItem = Cast<AItemBase>(InOperation->Payload);
+
+		DroppedItem = Cast<AItemBase>(InOperation->Payload);
 
 		if (IsRoomAvailableForPayLoad(DroppedItem)) {
+
+			InventoryComponent->RefreshAllItems();
+
+
 			InventoryComponent->AddItemAt(
 				DroppedItem,
 				InventoryComponent->TileToIndex(DraggedItemTopLeftIndex)
 			);
 		}
+		Dropped = true;
 		// тимчасово
 		return true;
 

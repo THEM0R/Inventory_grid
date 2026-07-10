@@ -93,4 +93,8 @@ public:
 
 	// функція оновлення віджета інвентаря
 	void Refresh();
+
+	AItemBase* DroppedItem;
+
+	bool Dropped = false;
 };
