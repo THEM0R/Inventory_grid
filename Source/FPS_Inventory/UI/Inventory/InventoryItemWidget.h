@@ -50,6 +50,7 @@ protected:
 
 	virtual void NativeOnMouseLeave(const FPointerEvent& InMouseEvent) override;
 
+	// функція перетягування ітема
 	virtual void NativeOnDragDetected(
 		const FGeometry& InGeometry,
 		const FPointerEvent& InMouseEvent,

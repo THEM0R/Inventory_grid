@@ -12,6 +12,7 @@
 #include "Component/Inventory/InventoryComponent.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Blueprint/WidgetLayoutLibrary.h"
+#include "Blueprint/DragDropOperation.h"
 
 
 
@@ -71,6 +72,13 @@ void UInventoryItemWidget::NativeOnDragDetected(
 	UDragDropOperation*& OutOperator
 ){
 	Super::NativeOnDragDetected(InGeometry, InMouseEvent, OutOperator);
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("DragDetected"));
+
+	BackgroundBorder->SetBrushColor(FLinearColor(0.0f, 0.0f, 0.0f, 0.5f));
+
+	UDragDropOperation* DragOperation = NewObject<UDragDropOperation>();
+	DragOperation->DefaultDragVisual = this;
 }
 
 FReply UInventoryItemWidget::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
