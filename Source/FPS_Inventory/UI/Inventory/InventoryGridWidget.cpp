@@ -6,6 +6,10 @@
 #include "Component/Inventory/InventoryComponent.h"
 #include "Blueprint/WidgetLayoutLibrary.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
+#include "Item/ItemBase.h"
+
+
+
 
 void UInventoryGridWidget::NativeConstruct()
 {
@@ -209,5 +213,28 @@ bool UInventoryGridWidget::NativeOnDrop(
 
 	if(InOperation->Payload) {
 		AItemBase* DroppedItem = Cast<AItemBase>(InOperation->Payload);
+
+		if (IsRoomAvailableForPayLoad(DroppedItem)) {
+			InventoryComponent->AddItemAt(
+				DroppedItem,
+				InventoryComponent->TileToIndex(DraggedItemTopLeftIndex)
+			);
+		}
+
+
 	}
+
+	return true;
+}
+
+bool UInventoryGridWidget::IsRoomAvailableForPayLoad(AItemBase* Item) const
+{
+	if (Item) {
+		return InventoryComponent->
+			isRoomAvailable(
+				Item, 
+				InventoryComponent->TileToIndex(DraggedItemTopLeftIndex)
+			);
+	}
+	return false;
 }

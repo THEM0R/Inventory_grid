@@ -15,6 +15,7 @@ class UCanvasPanel;
 class UBorder;
 class AFPS_InventoryCharacter;
 class UInventoryComponent;
+class AItemBase;
 /**
  * 
  */
@@ -72,6 +73,10 @@ protected:
 		// const UDragDropOperation* InOperation, 5.8 - UDragDropOperation* InOperation,
 		UDragDropOperation* InOperation
 	) override;
+
+	bool IsRoomAvailableForPayLoad(AItemBase* Item) const;
+
+	FIntPoint DraggedItemTopLeftIndex;
 
 public:
 
