@@ -87,6 +87,11 @@ protected:
 	// функц€ шоб визначити позиц≥ю мошки куди класти ≥тем
 	FMousePositionInTile FMousePositionInTileResult(FVector2D(MousePosition));
 
+	FReply NativeOnPreviewKeyDown(
+		const FGeometry& InGeometry,
+		const FKeyEvent& InKeyEvent
+	) override;
+
 	FIntPoint DraggedItemTopLeftIndex;
 
 public:

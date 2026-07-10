@@ -42,7 +42,13 @@ void AItemBase::Tick(float DeltaTime)
 
 FIntPoint AItemBase::GetDimensions() const
 {
-	return Dimensions;
+	if (!isRotated) {
+		return Dimensions;
+	}
+	else {
+		return FIntPoint(Dimensions.Y, Dimensions.X);
+	}
+	
 }
 
 UMaterialInterface* AItemBase::GetIcon()

@@ -227,6 +227,7 @@ bool UInventoryGridWidget::NativeOnDrop(
 		}
 		else {
 
+			// тут треба шукати той глюк шо при переміщені інколи пропадають ітеми
 			InventoryComponent->RefreshAllItems();
 
 			if (!InventoryComponent->TryAddItem(DroppedItem)) 
@@ -357,6 +358,17 @@ FMousePositionInTile UInventoryGridWidget::FMousePositionInTileResult(FVector2D(
 		> (InventoryComponent->TileSize / 2);
 
 	return MousePositionInTile;
+}
+
+FReply UInventoryGridWidget::NativeOnPreviewKeyDown(const FGeometry& InGeometry, const FKeyEvent& InKeyEvent)
+{
+
+	if (InKeyEvent.GetKey() == EKeys::R) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("R clicked"));
+	}
+
+
+	return Super::NativeOnPreviewKeyDown(InGeometry, InKeyEvent);
 }
 
 
