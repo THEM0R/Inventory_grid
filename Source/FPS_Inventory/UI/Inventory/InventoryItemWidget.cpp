@@ -79,6 +79,8 @@ void UInventoryItemWidget::NativeOnDragDetected(
 
 	UDragDropOperation* DragOperation = NewObject<UDragDropOperation>();
 	DragOperation->DefaultDragVisual = this;
+
+	OutOperator = DragOperation;
 }
 
 FReply UInventoryItemWidget::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
