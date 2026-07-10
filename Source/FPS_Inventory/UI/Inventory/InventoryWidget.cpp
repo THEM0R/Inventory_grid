@@ -7,3 +7,10 @@ void UInventoryWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 }
+
+FReply UInventoryWidget::NativeOnMouseButtonDown(
+	const FGeometry& InGeometry,
+	const FPointerEvent& InMouseEvent
+) {
+	return FReply::Handled();
+}

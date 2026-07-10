@@ -37,5 +37,9 @@ protected:
 	// ця функція стартує разом з створення віджета
 	virtual void NativeConstruct() override;
 
+	virtual FReply NativeOnMouseButtonDown(
+		const FGeometry& InGeometry, 
+		const FPointerEvent& InMouseEvent
+	);
 
 };
