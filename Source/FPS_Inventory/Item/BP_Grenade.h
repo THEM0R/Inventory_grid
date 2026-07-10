@@ -13,5 +13,8 @@ UCLASS()
 class FPS_INVENTORY_API ABP_Grenade : public AItemBase
 {
 	GENERATED_BODY()
-	
+
+public:
+
+	ABP_Grenade();
 };
