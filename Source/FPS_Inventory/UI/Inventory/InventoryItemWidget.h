@@ -12,6 +12,7 @@ class USizeBox;
 class UBorder;
 class UImage;
 class AFPS_InventoryCharacter;
+class AItemBase;
 /**
  * 
  */
@@ -36,6 +37,8 @@ protected:
 	UImage* ItemImage;
 
 	AFPS_InventoryCharacter* CharacterReference;
+
+	AItemBase* Item;
 
 	FVector2D Size;
 

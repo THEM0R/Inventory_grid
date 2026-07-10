@@ -57,6 +57,10 @@ public:
 
 	void SetInventoryGridWidget(UInventoryGridWidget* InventoryGridWidgetReference);
 
+
+	// функція видалення ітема
+	void RemoveItem(AItemBase* ItemToRemove);
+
 protected:
 
 	// всі ітеми 2 числа одне масив друге ячейка

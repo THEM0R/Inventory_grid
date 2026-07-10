@@ -157,3 +157,15 @@ void UInventoryComponent::SetInventoryGridWidget(UInventoryGridWidget* GridWidge
 	InventoryGridWidgetReference = GridWidgetReference;
 }
 
+void UInventoryComponent::RemoveItem(AItemBase* ItemToRemove)
+{
+	if (ItemToRemove) {
+		for (int32 i = 0; i < Items.Num(); i++)
+		{
+			if (Items[i] == ItemToRemove) {
+				Items[i] == nullptr;
+			}
+		}
+	}
+}
+

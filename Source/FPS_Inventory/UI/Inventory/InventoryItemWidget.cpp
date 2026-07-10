@@ -31,7 +31,7 @@ void UInventoryItemWidget::NativeConstruct()
 
 void UInventoryItemWidget::Refresh(AActor* ItemToAdd)
 {
-	AItemBase* Item = Cast<AItemBase>(ItemToAdd);
+	Item = Cast<AItemBase>(ItemToAdd);
 
 	ItemImage->SetBrushFromMaterial(Item->GetIcon());
 
@@ -79,6 +79,10 @@ void UInventoryItemWidget::NativeOnDragDetected(
 
 	UDragDropOperation* DragOperation = NewObject<UDragDropOperation>();
 	DragOperation->DefaultDragVisual = this;
+
+	DragOperation->Payload = Item;
+
+	CharacterReference->InventoryComponent->RemoveItem(Item);
 
 	OutOperator = DragOperation;
 }
