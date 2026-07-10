@@ -58,7 +58,7 @@ public:
 	void SetInventoryGridWidget(UInventoryGridWidget* InventoryGridWidgetReference);
 
 
-	// функція видалення ітема
+	// функція видалення ітема з масиву
 	void RemoveItem(AItemBase* ItemToRemove);
 
 protected:

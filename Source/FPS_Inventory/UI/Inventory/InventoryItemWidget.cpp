@@ -73,7 +73,7 @@ void UInventoryItemWidget::NativeOnDragDetected(
 ){
 	Super::NativeOnDragDetected(InGeometry, InMouseEvent, OutOperator);
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("DragDetected"));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("DragDetected"));
 
 	BackgroundBorder->SetBrushColor(FLinearColor(0.0f, 0.0f, 0.0f, 0.5f));
 
@@ -82,12 +82,22 @@ void UInventoryItemWidget::NativeOnDragDetected(
 
 	DragOperation->Payload = Item;
 
+	// видаляємо з масиву Item - AllItems
 	CharacterReference->InventoryComponent->RemoveItem(Item);
 
 	OutOperator = DragOperation;
+
+	// видаляжмо віджет - типу самого себе
+	this->RemoveFromParent();
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("RemoveFromParent"));
 }
 
-FReply UInventoryItemWidget::NativeOnMouseButtonDown(const FGeometry& InGeometry, const FPointerEvent& InMouseEvent)
+FReply UInventoryItemWidget::NativeOnMouseButtonDown(
+	const FGeometry& InGeometry, 
+	const FPointerEvent& InMouseEvent)
 {
 	return FReply::Handled().DetectDrag(TakeWidget(), EKeys::LeftMouseButton);
 }
+
+

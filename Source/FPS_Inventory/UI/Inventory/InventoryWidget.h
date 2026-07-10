@@ -10,7 +10,8 @@
 class UCanvasPanel;
 class UBorder;
 class UBackgroundBlur;
-
+class AFPS_InventoryCharacter;
+class AItemBase;
 
 /**
  * 
@@ -31,8 +32,12 @@ public:
 
 	UPROPERTY(VisibleAnywhere, meta = (BindWidget), Category = "UI")
 	UBackgroundBlur* Blur;
+
+	AItemBase* SpawnedItem;
 	
 protected:
+
+	AFPS_InventoryCharacter* CharacterReference;
 
 	// ця функція стартує разом з створення віджета
 	virtual void NativeConstruct() override;
@@ -43,5 +48,12 @@ protected:
 		const FGeometry& InGeometry, 
 		const FPointerEvent& InMouseEvent
 	);
+
+	virtual bool NativeOnDrop(
+		const FGeometry& InGeometry,
+		const FDragDropEvent& InDragDropEvent,
+		// const UDragDropOperation* InOperation, 5.8 - UDragDropOperation* InOperation,
+		UDragDropOperation* InOperation
+	) override;
 
 };
