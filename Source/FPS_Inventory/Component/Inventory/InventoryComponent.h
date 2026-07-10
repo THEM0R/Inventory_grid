@@ -7,6 +7,7 @@
 #include "InventoryComponent.generated.h"
 
 class AItemBase;
+class UInventoryGridWidget;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class FPS_INVENTORY_API UInventoryComponent : public UActorComponent
@@ -32,6 +33,8 @@ public:
 
 	bool AddedItem = false;
 
+	UInventoryGridWidget* InventoryGridWidgetReference;
+
 	TArray<AItemBase*> Items;
 
 	bool TryAddItem(AItemBase* ItemToAdd);
@@ -51,6 +54,8 @@ public:
 	void AddItemAt(AItemBase* ItemToAdd, int32 TopLeftIndex);
 
 	TMap<AItemBase*, FIntPoint> GetAllItems();
+
+	void SetInventoryGridWidget(UInventoryGridWidget* InventoryGridWidgetReference);
 
 protected:
 

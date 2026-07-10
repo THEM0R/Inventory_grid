@@ -3,6 +3,7 @@
 
 #include "Component/Inventory/InventoryComponent.h"
 #include "Item/ItemBase.h"
+#include "Ui/Inventory/InventoryGridWidget.h"
 
 
 // Sets default values for this component's properties
@@ -31,6 +32,11 @@ void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+
+	if (AddedItem) {
+		InventoryGridWidgetReference->Refresh();
+		AddedItem = false;
+	}
 }
 
 bool UInventoryComponent::TryAddItem(AItemBase* ItemToAdd)
@@ -144,5 +150,10 @@ TMap<AItemBase*, FIntPoint> UInventoryComponent::GetAllItems()
 		}
 	}
 	return AllItems;
+}
+
+void UInventoryComponent::SetInventoryGridWidget(UInventoryGridWidget* GridWidgetReference)
+{
+	InventoryGridWidgetReference = GridWidgetReference;
 }
 

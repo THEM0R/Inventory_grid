@@ -11,6 +11,7 @@ class UCanvasPanel;
 class USizeBox;
 class UBorder;
 class UImage;
+class AFPS_InventoryCharacter;
 /**
  * 
  */
@@ -34,4 +35,11 @@ protected:
 	UPROPERTY(VisibleAnywhere, meta = (BindWidget), Category = "UI")
 	UImage* ItemImage;
 
+	AFPS_InventoryCharacter* CharacterReference;
+
+	FVector2D Size;
+
+	virtual void NativeConstruct() override;
+
+	void Refresh(AActor* ItemToAdd);
 };

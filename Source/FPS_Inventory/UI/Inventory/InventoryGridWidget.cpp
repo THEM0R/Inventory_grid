@@ -11,10 +11,9 @@ void UInventoryGridWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	AFPS_InventoryCharacter* CharacterReference;
+	
 	CharacterReference = Cast<AFPS_InventoryCharacter>(GetOwningPlayerPawn());
 
-	UInventoryComponent* InventoryComponent;
 	InventoryComponent = CharacterReference->InventoryComponent;
 
 	if (!CharacterReference) return;
@@ -37,6 +36,7 @@ void UInventoryGridWidget::NativeConstruct()
 
 	CreateLineSegments();
 
+	InventoryComponent->SetInventoryGridWidget(this);
 }
 
 void UInventoryGridWidget::CreateLineSegments()
@@ -161,4 +161,38 @@ int32 UInventoryGridWidget::NativePaint(
 
 
 	return int32();
+}
+
+void UInventoryGridWidget::Refresh() {
+
+	TArray<AItemBase*> Keys;
+	InventoryComponent->GetAllItems().GetKeys(Keys);
+
+	if (CharacterReference->ItemWidgetClass) {
+		CharacterReference->
+			ItemWidget = CreateWidget(
+				GetWorld(), 
+				CharacterReference->ItemWidgetClass
+			);
+
+		for (AItemBase* AddedItem : Keys)
+		{
+			CharacterReference->
+				ItemWidget->
+				SetOwningPlayer(GetOwningPlayer());
+
+			int32 X = InventoryComponent->
+				GetAllItems()[AddedItem].X * InventoryComponent->TileSize;
+
+			int32 Y = InventoryComponent->
+				GetAllItems()[AddedItem].Y * InventoryComponent->TileSize;
+
+			PanelSlot = GridCanvasPanel->
+				AddChild(CharacterReference->ItemWidget);
+			Cast<UCanvasPanelSlot>(PanelSlot)->SetAutoSize(true);
+			Cast<UCanvasPanelSlot>(PanelSlot)->SetPosition(FVector2D(X, Y));
+
+		}
+	}
+
 }

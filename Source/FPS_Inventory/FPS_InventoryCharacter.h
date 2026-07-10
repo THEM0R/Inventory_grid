@@ -64,6 +64,12 @@ public:
 	UPROPERTY(EditAnywhere)
 	UInventoryComponent* InventoryComponent;
 
+	UPROPERTY(EditAnywhere, Category = "UI")
+	TSubclassOf<UUserWidget> ItemWidgetClass;
+	UUserWidget* ItemWidget;
+
+	AActor* ItemToAdd;
+
 protected:
 
 	/** Jump Input Action */
@@ -95,13 +101,13 @@ protected:
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
 
+	//
+
 	UPROPERTY(EditAnywhere, Category = "UI")
 	TSubclassOf<UUserWidget> InventoryWidgetClass;
 	UUserWidget* InventoryWidget;
 
-	UPROPERTY(EditAnywhere, Category = "UI")
-	TSubclassOf<UUserWidget> ItemWidgetClass;
-	UUserWidget* ItemWidget;
+	
 
 
 	APlayerController* GetPlayerController;

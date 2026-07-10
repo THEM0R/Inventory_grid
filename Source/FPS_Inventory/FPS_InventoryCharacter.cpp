@@ -226,6 +226,9 @@ void AFPS_InventoryCharacter::OnBeginOverlap(
 	const FHitResult& SweepResult) {
 
 	// ...
+
+	ItemToAdd = OtherActor;
+
 	AItemBase* Item = Cast<AItemBase>(OtherActor);
 
 	if (Item) {

@@ -13,7 +13,8 @@
 
 class UCanvasPanel;
 class UBorder;
-
+class AFPS_InventoryCharacter;
+class UInventoryComponent;
 /**
  * 
  */
@@ -33,6 +34,11 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, meta = (BindWidget), Category = "UI")
 	UCanvasPanel* GridCanvasPanel;
+
+	AFPS_InventoryCharacter* CharacterReference;
+	UInventoryComponent* InventoryComponent;
+
+	UPanelSlot* PanelSlot;
 
 	int32 Columns;
 
@@ -61,4 +67,9 @@ protected:
 		bool bParentEnabled) const override;
 
 
+
+public:
+
+	// функція оновлення віджета інвентаря
+	void Refresh();
 };
