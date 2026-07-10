@@ -279,6 +279,11 @@ bool UInventoryGridWidget::NativeOnDragOver(
 			);
 		}
 
+		DraggedItemTopLeftIndex = FIntPoint(
+			FMath::TruncToInt32(LocalPosition.X / InventoryComponent->TileSize),
+			FMath::TruncToInt32(LocalPosition.Y / InventoryComponent->TileSize)
+		) - (ResultTile / 2);
+
 
 		// עטלקאסמגמ
 		return true;
