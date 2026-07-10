@@ -61,6 +61,8 @@ public:
 	// функція видалення ітема з масиву
 	void RemoveItem(AItemBase* ItemToRemove);
 
+	void RefreshAllItems();
+
 protected:
 
 	// всі ітеми 2 числа одне масив друге ячейка

@@ -169,3 +169,15 @@ void UInventoryComponent::RemoveItem(AItemBase* ItemToRemove)
 	}
 }
 
+void UInventoryComponent::RefreshAllItems()
+{
+	AllItems.Empty();
+
+	for (int32 i = 0; i < Items.Num(); i++)
+	{
+		if (Items[i]) {
+			AllItems.Add(Items[i], IndexToTile(i));
+		}
+	}
+}
+

@@ -242,16 +242,18 @@ bool UInventoryGridWidget::NativeOnDragOver(
 		FVector2D GridStarterCordinates = GridBorder->
 			GetCachedGeometry().GetLocalPositionAtCoordinates(FVector2D(0.0f, 0.0f));
 
+		FVector2D AdjustedPosition = LocalPosition - GridStarterCordinates;
+
 		GEngine->AddOnScreenDebugMessage(
 			-1, 5.0f,
 			FColor::Green, 
-			FString::Printf(TEXT("X: %.2f Y: %.2f"), LocalPosition.X, LocalPosition.Y)
+			FString::Printf(TEXT("X: %.2f Y: %.2f"), AdjustedPosition.X, AdjustedPosition.Y)
 		);
 
 		FIntPoint ResultTile;
 
-		bool Down_ = FMousePositionInTileResult(LocalPosition).Down;
-		bool Right_ = FMousePositionInTileResult(LocalPosition).Right;
+		bool Down_ = FMousePositionInTileResult(AdjustedPosition).Down;
+		bool Right_ = FMousePositionInTileResult(AdjustedPosition).Right;
 
 		if (Right_) {
 			ResultTile.X = FMath::Clamp(
@@ -284,8 +286,8 @@ bool UInventoryGridWidget::NativeOnDragOver(
 		}
 
 		DraggedItemTopLeftIndex = FIntPoint(
-			FMath::TruncToInt32(LocalPosition.X / InventoryComponent->TileSize),
-			FMath::TruncToInt32(LocalPosition.Y / InventoryComponent->TileSize)
+			FMath::TruncToInt32(AdjustedPosition.X / InventoryComponent->TileSize),
+			FMath::TruncToInt32(AdjustedPosition.Y / InventoryComponent->TileSize)
 		) - (ResultTile / 2);
 
 
